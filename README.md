@@ -1,1 +1,1 @@
-# educado-client
+# educado-mobile-client
