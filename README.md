@@ -1,1 +1,1 @@
-# sybi-client
+# educado-client
