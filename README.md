@@ -1,1 +1,3 @@
-# educado-mobile-client
+# Educado Mobile Client
+
+Mobile application client of Educado.
