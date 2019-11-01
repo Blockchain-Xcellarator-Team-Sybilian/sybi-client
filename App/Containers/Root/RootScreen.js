@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API from 'App/Apis/Wrapper';
 import NavigationService from 'App/Services/NavigationService';
 import AppNavigator from 'App/Navigators/AppNavigator';
 import { View } from 'react-native';
@@ -22,6 +23,7 @@ class RootScreen extends Component {
             NavigationService.setTopLevelNavigator(navigatorRef);
           }}
         />
+        <API />
       </View>
     );
   }

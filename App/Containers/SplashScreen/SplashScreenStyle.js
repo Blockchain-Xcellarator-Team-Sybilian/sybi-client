@@ -6,16 +6,17 @@ export default StyleSheet.create({
   container: {
     ...ApplicationStyles.screen.container,
     alignItems: 'center',
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.white,
     display: 'flex',
     justifyContent: 'center',
   },
   logo: {
-    alignItems: 'center',
-    backgroundColor: 'white',
-    display: 'flex',
-    height: 70,
-    justifyContent: 'center',
-    width: 70,
+    height: '100%',
+    width: '100%',
+  },
+  logoContainer: {
+    height: 300,
+    marginBottom: 25,
+    width: '80%',
   },
 });

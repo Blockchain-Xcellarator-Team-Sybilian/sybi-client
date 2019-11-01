@@ -1,7 +1,7 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer, persistStore } from 'redux-persist';
-
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 /**
  * This import defaults to localStorage for web and AsyncStorage for react-native.
  *
@@ -24,7 +24,7 @@ const persistConfig = {
   ],
 };
 
-export default (rootReducer, rootSaga) => {
+export default (rootReducer, rootSaga, createReducer) => {
   const middleware = [];
   const enhancers = [];
 
@@ -37,11 +37,22 @@ export default (rootReducer, rootSaga) => {
   // Redux persist
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-  const store = createStore(persistedReducer, compose(...enhancers));
+  const store = createStore(persistedReducer, composeWithDevTools(...enhancers));
   const persistor = persistStore(store);
 
   // Kick off the root saga
   sagaMiddleware.run(rootSaga);
+  store.runSaga = sagaMiddleware.run;
+  store.injectedReducers = {}; // Reducer registry
+  store.injectedSagas = {}; // Saga registry
+
+  // Make reducers hot reloadable, see http://mxs.is/googmo
+  /* istanbul ignore next */
+  if (module.hot) {
+    module.hot.accept(rootReducer, () => {
+      store.replaceReducer(createReducer(store.injectedReducers));
+    });
+  }
 
   return { store, persistor };
 };

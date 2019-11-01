@@ -4,7 +4,13 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import createStore from 'App/Stores';
 import RootScreen from './Containers/Root/RootScreen';
 
+// Import saga from resaga
+import { sagas } from 'resaga';
+
 const { store, persistor } = createStore();
+
+// Only one resaga saga needs to be run (adding more creates duplicate watchers)
+store.runSaga(sagas[0]);
 
 export default class App extends Component {
   render() {
