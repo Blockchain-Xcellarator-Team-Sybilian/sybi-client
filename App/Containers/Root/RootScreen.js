@@ -4,14 +4,15 @@ import NavigationService from 'App/Services/NavigationService';
 import AppNavigator from 'App/Navigators/AppNavigator';
 import { View } from 'react-native';
 import styles from './RootScreenStyle';
-import { connect } from 'react-redux';
-import StartupActions from 'App/Stores/Startup/Actions';
+import { compose } from 'redux';
+import { sagas } from 'resaga';
+import injectSaga from 'App/Utils/injectSaga';
 import { PropTypes } from 'prop-types';
 
 class RootScreen extends Component {
   componentDidMount() {
     // Run the startup saga when the application is starting
-    this.props.startup();
+    // this.props.startup();
   }
 
   render() {
@@ -33,13 +34,17 @@ RootScreen.propTypes = {
   startup: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({});
+// const mapStateToProps = (state) => ({});
+//
+// const mapDispatchToProps = (dispatch) => ({
+//   startup: () => dispatch(StartupActions.startup()),
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  startup: () => dispatch(StartupActions.startup()),
-});
+// Only one resaga saga needs to be injected (injecting more creates duplicate watchers)
+const withSaga = injectSaga({ key: 'RootScreen', saga: sagas[0] });
+export default compose(withSaga)(RootScreen);
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RootScreen);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(RootScreen);
