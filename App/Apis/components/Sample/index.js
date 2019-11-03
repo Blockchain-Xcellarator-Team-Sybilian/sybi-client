@@ -7,6 +7,29 @@ import { GET_WELCOME_MESSAGE, SAMPLE_API } from 'App/Apis';
 import { CONFIG } from './config';
 
 export class Sample extends Component {
+  componentDidMount = () => {
+    const { message } = this.props;
+
+    if (!message) {
+      let payload = { name: 'Edil1' };
+      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
+      payload = { name: 'Edil2' };
+      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
+      payload = { name: 'Edil3' };
+      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
+      payload = { name: 'Edil4' };
+      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
+      payload = { name: 'Edil5' };
+      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
+      payload = { name: 'Edil6' };
+      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
+
+      console.log('SETTING MESSAGE');
+    } else {
+      console.log('MESSAGE ALREADY SET!');
+    }
+  };
+
   componentWillReceiveProps(nextProps) {
     return this.props.resaga.analyse(nextProps, {
       [GET_WELCOME_MESSAGE]: { onSuccess: this.props.resaga.setValue },
@@ -25,6 +48,7 @@ export class Sample extends Component {
 Sample.propTypes = {
   // hoc
   resaga: PropTypes.object.isRequired,
+  message: PropTypes.string,
 };
 
 Sample.defaultProps = {};
