@@ -11,17 +11,7 @@ export class Sample extends Component {
     const { message } = this.props;
 
     if (!message) {
-      let payload = { name: 'Edil1' };
-      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-      payload = { name: 'Edil2' };
-      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-      payload = { name: 'Edil3' };
-      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-      payload = { name: 'Edil4' };
-      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-      payload = { name: 'Edil5' };
-      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-      payload = { name: 'Edil6' };
+      const payload = { name: 'Hooman' };
       this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
 
       console.log('SETTING MESSAGE');
