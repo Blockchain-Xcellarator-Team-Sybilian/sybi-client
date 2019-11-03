@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.educado">
+  package="com.sybilian.educado">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

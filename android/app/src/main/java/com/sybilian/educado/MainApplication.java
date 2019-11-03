@@ -1,4 +1,4 @@
-package com.educado;
+package com.sybilian.educado;
 
 import android.app.Application;
 
