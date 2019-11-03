@@ -8,16 +8,8 @@ import { CONFIG } from './config';
 
 export class Sample extends Component {
   componentDidMount = () => {
-    const { message } = this.props;
-
-    if (!message) {
-      const payload = { name: 'Hooman' };
-      this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-
-      console.log('SETTING MESSAGE');
-    } else {
-      console.log('MESSAGE ALREADY SET!');
-    }
+    const payload = { name: 'Hooman' };
+    this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
   };
 
   componentWillReceiveProps(nextProps) {
@@ -38,7 +30,6 @@ export class Sample extends Component {
 Sample.propTypes = {
   // hoc
   resaga: PropTypes.object.isRequired,
-  message: PropTypes.string,
 };
 
 Sample.defaultProps = {};

@@ -22,9 +22,5 @@ export const CONFIG = {
     message: [USER_DATA_STORE, 'message'],
   },
 
-  value: {
-    message: [USER_DATA_STORE, 'message'],
-  },
-
   manuallySubscribe: true, // will not auto-subscribe to all values in `@@values`
 };
