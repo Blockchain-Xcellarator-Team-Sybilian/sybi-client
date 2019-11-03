@@ -1,36 +1,70 @@
 {
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "globals": {
+    "fetch": true,
+    "window": true,
+    "__DEV__": true,
+    "navigator": true,
+    "ReactElement": true,
+    "requestAnimationFrame": true,
+    "jest": true,
+    "Iterable": true,
+    "Action": true,
+    "FormData": true
+  },
   "plugins": [
     "react",
     "react-native",
-    "prettier"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
-    },
-    "sourceType": "module",
-    "useJSXTextNode": false
-  },
-  "env": {
-    "react-native/react-native": true
-  },
-  "extends": [
-    "standard",
-    "plugin:react/recommended",
-    "plugin:react-native/all",
-    "plugin:prettier/recommended"
+    "flowtype"
   ],
   "settings": {
-    "react": {
-      "version": "detect"
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
     }
   },
   "rules": {
-    "react-native/no-color-literals": 0,
-    "react-native/no-raw-text": 0, // Avoid false positive, wait for fix
-    "no-console": 1,
-    "no-unused-vars": 2
+    "comma-dangle": 0,
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "no-console": 0,
+    "camelcase": 0,
+    "react-native/no-unused-styles": 2,
+    "no-return-assign": 0,
+    "react/jsx-boolean-value": 0,
+    "react/sort-comp": 0,
+    "arrow-body-style": 0,
+    "no-nested-ternary": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-extraneous-dependencies": [ "error", { "packageDir": "./" } ],
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "react/require-default-props": 0,
+    "react/jsx-curly-brace-presence": 0,
+    "react/forbid-prop-types": 1,
+    "react/jsx-wrap-multilines": "off",
+    "react/destructuring-assignment": "off",
+    "max-len": ["warn", { "code": 100 }],
+    "import/prefer-default-export": 0,
+    "global-require": "off",
+    "prefer-promise-reject-errors": "off",
+    "padded-blocks": "off",
+    "react/no-typos": "off",
+    "react/prefer-stateless-function": 0,
+    "import/no-named-as-default": 0,
+    "no-underscore-dangle": "warn",
+    "react/prop-types": ["error", { "ignore": ["componentId"] }]
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
   }
 }

@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/lib/integration/react';
-import createStore from 'App/Stores';
+import { persistStore } from 'redux-persist-immutable';
+import persistConfig from './Stores/persistConfig';
+import ConfigureStore from './Stores/ConfigureStore';
 import RootScreen from './Containers/Root/RootScreen';
+import SplashScreen from './Containers/SplashScreen/SplashScreen';
 
-const { store, persistor } = createStore();
+// Create redux store with history
+const initialState = {};
+const store = ConfigureStore(initialState);
 
 export default class App extends Component {
-  render() {
-    return (
-      /**
-       * @see https://github.com/reduxjs/react-redux/blob/master/docs/api/Provider.md
-       */
+  state = {
+    persisted: false,
+  };
+
+  renderApp = () => {
+    const { persisted } = this.state;
+
+    const app = (
       <Provider store={store}>
-        {/**
-         * PersistGate delays the rendering of the app's UI until the persisted state has been retrieved
-         * and saved to redux.
-         * The `loading` prop can be `null` or any react instance to show during loading (e.g. a splash screen),
-         * for example `loading={<SplashScreen />}`.
-         * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
-         */}
-        <PersistGate loading={null} persistor={persistor}>
-          <RootScreen />
-        </PersistGate>
+        <RootScreen />
       </Provider>
     );
+
+    if (!persisted) {
+      console.log('PERSISTING STORE. . .');
+      persistStore(store, persistConfig, () => {
+        setTimeout(() => this.setState({ persisted: true }), 2000);
+      });
+      return <SplashScreen />;
+    }
+
+    console.log('PERSISTED!');
+    return app;
+  };
+
+  render() {
+    return this.renderApp();
   }
 }

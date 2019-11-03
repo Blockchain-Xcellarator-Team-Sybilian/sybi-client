@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
-target 'educado' do
-  # Pods for educado
+target 'Educado' do
+  # Pods for Educado
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -23,15 +23,15 @@ target 'educado' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-  target 'educadoTests' do
+  target 'EducadoTests' do
     inherit! :search_paths
     # Pods for testing
   end
   use_native_modules!
 end
-target 'educado-tvOS' do
-  # Pods for educado-tvOS
-  target 'educado-tvOSTests' do
+target 'Educado-tvOS' do
+  # Pods for Educado-tvOS
+  target 'Educado-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
