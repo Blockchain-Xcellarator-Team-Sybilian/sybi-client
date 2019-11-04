@@ -18,7 +18,7 @@ class RootScreen extends Component {
   };
 
   componentDidMount = () => {
-    setTimeout(() => NavigationService.navigate('MainScreen'), 1500);
+    setTimeout(() => NavigationService.navigateAndReset('IntroScreen'), 1500);
     console.log('PERSISTED!');
   };
 
