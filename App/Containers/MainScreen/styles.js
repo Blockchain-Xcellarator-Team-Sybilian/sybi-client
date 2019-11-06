@@ -1,13 +1,31 @@
-import { StyleSheet } from 'react-native';
-import Colors from 'App/Theme/Colors';
-import ApplicationStyles from 'App/Theme/ApplicationStyles';
+import { StyleSheet } from 'App/Theme';
 
 export default StyleSheet.create({
   container: {
-    ...ApplicationStyles.screen.container,
-    alignItems: 'center',
-    backgroundColor: Colors.white,
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
+  },
+  titleText: {
+    color: '#3b3b3b',
+  },
+  imageContainer: {
+    marginTop: -80,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 260,
+    height: 120,
+  },
+  registerBtn: {
+    marginTop: 48,
+  },
+  registerText: {
+    color: '#ffffff',
+  },
+  loginBtn: {
+    marginTop: 16,
   },
 });

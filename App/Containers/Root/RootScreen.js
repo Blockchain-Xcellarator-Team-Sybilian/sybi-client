@@ -18,8 +18,11 @@ class RootScreen extends Component {
   };
 
   componentDidMount = () => {
-    setTimeout(() => NavigationService.navigateAndReset('IntroScreen'), 1500);
-    console.log('PERSISTED!');
+    const { doneIntro } = this.props;
+
+    const route = doneIntro ? 'MainScreen' : 'IntroScreen';
+
+    setTimeout(() => NavigationService.navigateAndReset(route), 1500);
   };
 
   componentWillReceiveProps(nextProps) {
@@ -56,12 +59,17 @@ class RootScreen extends Component {
 
 RootScreen.propTypes = {
   theme: PropTypes.string,
+  doneIntro: PropTypes.bool,
 };
 
 RootScreen.defaultProps = {
   theme: 'light',
+  doneIntro: false,
 };
 
 // Only one resaga saga needs to be injected (injecting more creates duplicate watchers)
 const withSaga = injectSaga({ key: 'RootScreen', saga: sagas[0] });
-export default compose(withSaga, resaga(CONFIG))(RootScreen);
+export default compose(
+  withSaga,
+  resaga(CONFIG)
+)(RootScreen);

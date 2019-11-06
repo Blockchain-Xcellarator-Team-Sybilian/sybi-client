@@ -1,64 +1,25 @@
 import React from 'react';
-import {
-  Alert, Image, StyleSheet, View
-} from 'react-native';
+import resaga from 'resaga';
+import PropTypes from 'prop-types';
 import { Text } from 'galio-framework';
+import { Image, View } from 'react-native';
+import { APP_SETUP_API, UPDATE_DONE_INTRO } from 'App/Apis';
+import NavigationService from 'App/Services/NavigationService';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import { CONFIG } from './config';
+import SLIDES from './slides';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  mainContent: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  image: {
-    width: 320,
-    height: 320,
-  },
-  text: {
-    color: 'rgba(255, 255, 255, 0.8)',
-    backgroundColor: 'transparent',
-    textAlign: 'center',
-    paddingHorizontal: 16,
-  },
-  title: {
-    fontSize: 22,
-    color: 'white',
-    backgroundColor: 'transparent',
-    textAlign: 'center',
-    marginBottom: 16,
-  },
-});
+export class IntroScreen extends React.Component {
+  handleDone = () => {
+    this.props.resaga.dispatchTo(APP_SETUP_API, UPDATE_DONE_INTRO, {});
+    NavigationService.navigate('MainScreen');
+  };
 
-const slides = [
-  {
-    key: '1',
-    title: 'Education is expensive',
-    text: 'We all know that education is too expensive.\nBut we believe that education is for everyone!',
-    image: require('../../Assets/Images/1.png'),
-    backgroundColor: '#59b2ab',
-  },
-  {
-    key: '2',
-    title: 'Securing your future',
-    text: 'That\'s why we in Educado developed a solution using a secured and well-known technology.',
-    image: require('../../Assets/Images/2.png'),
-    backgroundColor: '#febe29',
-  },
-  {
-    key: '3',
-    title: 'Reach your dreams',
-    text: 'Using blockchain technology and Educado we will bridge the gap towards your success.',
-    image: require('../../Assets/Images/3.png'),
-    backgroundColor: '#67bdd2',
-  }
-];
-
-export default class App extends React.Component {
-  _renderItem = ({ item }) => {
+  renderItem = ({ item }) => {
     return (
       <View style={[styles.mainContent, { backgroundColor: item.backgroundColor }]}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text p bold style={styles.title}>{item.title}</Text>
         <Image style={styles.image} source={item.image} />
         <Text style={styles.text}>{item.text}</Text>
       </View>
@@ -66,6 +27,18 @@ export default class App extends React.Component {
   };
 
   render() {
-    return <AppIntroSlider renderItem={this._renderItem} slides={slides} onDone={() => Alert.alert('Done!')} />;
+    return (
+      <AppIntroSlider
+        renderItem={this.renderItem}
+        slides={SLIDES}
+        onDone={this.handleDone}
+      />
+    );
   }
 }
+
+IntroScreen.propTypes = {
+  resaga: PropTypes.object.isRequired,
+};
+
+export default resaga(CONFIG)(IntroScreen);
