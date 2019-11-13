@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import AppSetup from './components/AppSetup';
 import Sample from './components/Sample';
 
 export class API extends Component {
@@ -10,6 +11,7 @@ export class API extends Component {
     return (
       <Fragment>
         <Sample />
+        <AppSetup />
       </Fragment>
     );
   }

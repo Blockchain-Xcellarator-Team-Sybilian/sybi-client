@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist-immutable';
+import { StyleSheet } from './Theme';
 import persistConfig from './Stores/persistConfig';
 import ConfigureStore from './Stores/ConfigureStore';
 import RootScreen from './Containers/Root/RootScreen';
-import SplashScreen from './Containers/SplashScreen/SplashScreen';
+import './Utils/disableWarning'; // Disable yellow box warnings
 
 // Create redux store with history
 const initialState = {};
 const store = ConfigureStore(initialState);
+StyleSheet.build(); // you can add global style variables here
 
 export default class App extends Component {
   state = {
@@ -27,12 +29,11 @@ export default class App extends Component {
     if (!persisted) {
       console.log('PERSISTING STORE. . .');
       persistStore(store, persistConfig, () => {
-        setTimeout(() => this.setState({ persisted: true }), 2000);
+        this.setState({ persisted: true });
       });
-      return <SplashScreen />;
+      return null;
     }
 
-    console.log('PERSISTED!');
     return app;
   };
 

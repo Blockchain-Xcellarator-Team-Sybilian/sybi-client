@@ -3,18 +3,13 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import resaga, { reducer } from 'resaga';
 import injectReducer from 'App/Utils/injectReducer';
-import { GET_WELCOME_MESSAGE, SAMPLE_API } from 'App/Apis';
+import { UPDATE_DONE_INTRO, APP_SETUP_API } from 'App/Apis';
 import { CONFIG } from './config';
 
-export class Sample extends Component {
-  componentDidMount = () => {
-    const payload = { name: 'Hooman' };
-    this.props.resaga.dispatchTo(SAMPLE_API, GET_WELCOME_MESSAGE, { payload });
-  };
-
+export class AppSetup extends Component {
   componentWillReceiveProps(nextProps) {
     return this.props.resaga.analyse(nextProps, {
-      [GET_WELCOME_MESSAGE]: { onSuccess: this.props.resaga.setValue },
+      [UPDATE_DONE_INTRO]: { onSuccess: this.props.resaga.setValue },
     });
   }
 
@@ -27,14 +22,14 @@ export class Sample extends Component {
   }
 }
 
-Sample.propTypes = {
+AppSetup.propTypes = {
   // hoc
   resaga: PropTypes.object.isRequired,
 };
 
-Sample.defaultProps = {};
+AppSetup.defaultProps = {};
 
 export default compose(
-  injectReducer({ key: SAMPLE_API, reducer: reducer(SAMPLE_API) }),
+  injectReducer({ key: APP_SETUP_API, reducer: reducer(APP_SETUP_API) }),
   resaga(CONFIG)
-)(Sample);
+)(AppSetup);

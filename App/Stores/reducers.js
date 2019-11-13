@@ -5,7 +5,7 @@
 import { reducer } from 'resaga';
 import { USERLOGOUT } from 'App/Constants';
 import { combineReducers } from 'redux-immutable';
-import { USER_DATA_STORE } from './datastores';
+import { APP_DATA_STORE, USER_DATA_STORE, USER_PREFERENCE } from './datastores';
 
 // tell resaga to clear store on USERLOGOUT
 export const customReducer = {
@@ -17,7 +17,9 @@ export const customReducer = {
  */
 export default function createReducer(injectedReducers = {}) {
   return combineReducers({
+    [APP_DATA_STORE]: reducer(APP_DATA_STORE, customReducer),
     [USER_DATA_STORE]: reducer(USER_DATA_STORE, customReducer),
+    [USER_PREFERENCE]: reducer(USER_PREFERENCE, customReducer),
     ...injectedReducers,
   });
 }

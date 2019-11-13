@@ -4,4 +4,6 @@
 
 export default {
   logo: require('App/Assets/Images/logo.png'),
+  logoFill: require('App/Assets/Images/logo-fill.png'),
+  background: require('App/Assets/Images/background.png')
 };
