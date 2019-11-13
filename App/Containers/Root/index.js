@@ -14,18 +14,18 @@ import styles from './styles';
 import { CONFIG } from './config';
 
 class Root extends Component {
-  componentDidMount = () => {
-    NavigationService.navigate('RegisterScreen');
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-  };
-
   // componentDidMount = () => {
-  //   const { doneIntro } = this.props;
-  //   const route = doneIntro ? 'MainScreen' : 'IntroScreen';
-  //
+  //   NavigationService.navigate('LoginScreen');
   //   BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-  //   setTimeout(() => NavigationService.navigateAndReset(route), 1500);
   // };
+
+  componentDidMount = () => {
+    const { doneIntro } = this.props;
+    const route = doneIntro ? 'MainScreen' : 'IntroScreen';
+
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    setTimeout(() => NavigationService.navigateAndReset(route), 1500);
+  };
 
   componentWillUnmount = () => {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
