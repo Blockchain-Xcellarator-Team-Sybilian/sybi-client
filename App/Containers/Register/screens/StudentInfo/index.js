@@ -43,6 +43,7 @@ export class StudentInfo extends PureComponent {
       nextTitle: 'Next',
       nextFunc: this.onNextStep,
       title: 'Welcome Student!',
+      backFunc: this.onPrevStep,
     });
 
     this.setState(
@@ -73,6 +74,11 @@ export class StudentInfo extends PureComponent {
       studentNumber,
       school,
     });
+  };
+
+  onPrevStep = () => {
+    const { page, prevStep } = this.props;
+    prevStep(page - 1);
   };
 
   onNextStep = () => {
@@ -119,7 +125,7 @@ export class StudentInfo extends PureComponent {
     return (
       <ViewInputContainer>
         <ScrollView style={{ marginTop: 6 }}>
-          <AnimatedView animation="fadeIn" duration={700}>
+          <AnimatedView animation="fadeInUp" duration={700}>
             <Title title="Student Details" />
             <ViewPadding>
               <Label label="NAME*" />
@@ -169,6 +175,7 @@ StudentInfo.propTypes = {
   // parent
   page: PropTypes.number.isRequired,
   nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 
   // resaga

@@ -25,6 +25,7 @@ export class Summary extends PureComponent {
       nextFunc: this.onNextStep,
       title: 'Please verify',
       disableNext: false,
+      backFunc: this.onPrevStep,
     });
   };
 
@@ -32,6 +33,11 @@ export class Summary extends PureComponent {
     // const {} = this.props;
     // this.props.resaga.dispatchTo();
     NavigationService.navigateAndResetStack('DashboardScreen');
+  };
+
+  onPrevStep = () => {
+    const { page, prevStep } = this.props;
+    prevStep(page - 1);
   };
 
   onNextStep = () => {
@@ -170,7 +176,7 @@ export class Summary extends PureComponent {
     return (
       <ViewInputContainer>
         <ScrollView style={{ marginTop: 6 }}>
-          <AnimatedView animation="fadeIn" duration={700}>
+          <AnimatedView animation="fadeInUp" duration={700}>
             <ViewPadding style={styles.backdrop}>
               <RKText category="c2" style={styles.message}>
                 {'Please verify all the details below then press "Finish" button to proceed. '
@@ -193,6 +199,7 @@ Summary.propTypes = {
   // parent
   page: PropTypes.number.isRequired,
   nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 
   // student

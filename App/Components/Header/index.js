@@ -46,9 +46,9 @@ export class Header extends PureComponent {
   };
 
   renderBackButton = () => {
-    const { back } = this.props;
+    const { back, backFunc } = this.props;
 
-    if (!back) {
+    if (!back && !backFunc) {
       return null;
     }
 
@@ -58,7 +58,7 @@ export class Header extends PureComponent {
           iconSource={BackIcon}
           iconStyle={styles.backIcon}
           backgroundColor="transparent"
-          onPress={NavigationService.navigateBack}
+          onPress={backFunc || NavigationService.navigateBack}
         />
       </View>
     );
@@ -86,6 +86,7 @@ Header.propTypes = {
   nextScreen: PropTypes.string,
   nextTitle: PropTypes.string,
   nextFunc: PropTypes.func,
+  backFunc: PropTypes.func,
   noBorder: PropTypes.bool,
   reset: PropTypes.bool,
   disableNext: PropTypes.bool,

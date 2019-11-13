@@ -55,6 +55,10 @@ export class Register extends Component {
     }
   };
 
+  onPrevStep = (prevPage) => {
+    this.setState({ currentPage: prevPage });
+  };
+
   onNextStep = (nextPage, onSubmit) => {
     onSubmit();
     this.setState({ currentPage: nextPage });
@@ -67,6 +71,7 @@ export class Register extends Component {
         page={page}
         navigation={navigation}
         nextStep={this.onNextStep}
+        prevStep={this.onPrevStep}
         {...props}
       />
     );

@@ -3,12 +3,9 @@ import moment from 'moment';
 import { TabBar, View as VIEW } from 'react-native-ui-lib';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Input as KittenInput, Text as TEXT } from 'react-native-ui-kitten';
-import COLORS from 'App/Theme/Colors';
 import styles from './styles';
 
 moment.locale('en');
-
-OTF.defaultProps.selectionColor = COLORS.primary;
 
 const INPUT = ({ ...props }) => (
   <KittenInput {...props} />

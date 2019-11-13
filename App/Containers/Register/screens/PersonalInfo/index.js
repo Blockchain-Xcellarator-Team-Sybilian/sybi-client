@@ -44,6 +44,7 @@ export class PersonalInfo extends PureComponent {
       nextTitle: 'Next',
       nextFunc: this.onNextStep,
       title: 'Tell me more',
+      backFunc: this.onPrevStep,
     });
 
     this.setState(
@@ -77,6 +78,11 @@ export class PersonalInfo extends PureComponent {
       presentAddress,
       permanentAddress,
     });
+  };
+
+  onPrevStep = () => {
+    const { page, prevStep } = this.props;
+    prevStep(page - 1);
   };
 
   onNextStep = () => {
@@ -155,7 +161,7 @@ export class PersonalInfo extends PureComponent {
     return (
       <ViewInputContainer>
         <ScrollView style={{ marginTop: 6 }}>
-          <AnimatedView animation="fadeIn" duration={700}>
+          <AnimatedView animation="fadeInUp" duration={700}>
             <Title title="Other information" />
             <ViewPadding>
               <Label label="EMAIL*" />
@@ -217,6 +223,7 @@ PersonalInfo.propTypes = {
   // parent
   page: PropTypes.number.isRequired,
   nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 
   // resaga

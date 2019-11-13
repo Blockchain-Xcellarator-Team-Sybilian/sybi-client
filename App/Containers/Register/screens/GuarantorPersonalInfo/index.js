@@ -48,6 +48,7 @@ export class GuarantorPersonalInfo extends PureComponent {
       nextFunc: this.onNextStep,
       title: 'Almost done...',
       disableNext: true,
+      backFunc: this.onPrevStep,
     });
 
     this.setState({
@@ -82,6 +83,11 @@ export class GuarantorPersonalInfo extends PureComponent {
       guarantorPresent: presentAddress,
       guarantorPermanent: permanentAddress,
     });
+  };
+
+  onPrevStep = () => {
+    const { page, prevStep } = this.props;
+    prevStep(page - 1);
   };
 
   onNextStep = () => {
@@ -149,7 +155,7 @@ export class GuarantorPersonalInfo extends PureComponent {
     return (
       <ViewInputContainer>
         <ScrollView style={{ marginTop: 6 }}>
-          <AnimatedView animation="fadeIn" duration={700}>
+          <AnimatedView animation="fadeInUp" duration={700}>
             <Title title="Guarantor information" />
             <ViewPadding>
               <Label label="DATE OF BIRTH*" />
@@ -212,6 +218,7 @@ GuarantorPersonalInfo.propTypes = {
   // parent
   page: PropTypes.number.isRequired,
   nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 
   // resaga

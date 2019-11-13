@@ -39,6 +39,7 @@ export class AddGuarantor extends PureComponent {
       nextFunc: this.onNextStep,
       title: 'Add a Guarantor?',
       disableNext: false,
+      backFunc: this.onPrevStep,
     });
 
     this.setState({
@@ -60,6 +61,11 @@ export class AddGuarantor extends PureComponent {
       guarantorPhone: phone,
       hasGuarantor: addGuarantor,
     });
+  };
+
+  onPrevStep = () => {
+    const { page, prevStep } = this.props;
+    prevStep(page - 1);
   };
 
   onNextStep = () => {
@@ -193,6 +199,7 @@ AddGuarantor.propTypes = {
   changeStepCount: PropTypes.func,
   page: PropTypes.number.isRequired,
   nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 
   // resaga

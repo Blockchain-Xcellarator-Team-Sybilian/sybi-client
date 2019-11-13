@@ -32,6 +32,8 @@ export class AccountInfo extends PureComponent {
       nextTitle: 'Next',
       nextFunc: this.onNextStep,
       title: "Let's get started!",
+      backFunc: null,
+      back: true,
     });
 
     this.setState(
@@ -112,7 +114,7 @@ export class AccountInfo extends PureComponent {
     return (
       <ViewInputContainer>
         <ScrollView style={{ marginTop: 6 }}>
-          <AnimatedView animation="fadeIn" duration={700}>
+          <AnimatedView animation="fadeInUp" duration={700}>
             <Title title="Account Details" />
             <ViewPadding>
               <Label label="USERNAME*" />
