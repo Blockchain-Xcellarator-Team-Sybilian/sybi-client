@@ -1,29 +1,36 @@
-const size = {
-  h1: 38,
-  h2: 34,
-  h3: 30,
-  input: 18,
-  regular: 17,
-  medium: 14,
-  small: 12,
-};
+import { StyleSheet } from 'react-native';
+import { material, materialColors, systemWeights } from 'react-native-typography';
+import c from './Colors';
 
-const style = {
-  h1: {
-    fontSize: size.h1,
+export const type = material;
+export const color = materialColors;
+export const weight = systemWeights;
+
+const fontColors = StyleSheet.create({
+  primary: {
+    color: c.primary,
   },
-  h2: {
-    fontSize: size.h2,
+  text: {
+    color: c.text,
   },
-  h3: {
-    fontSize: size.h3,
+  headerColor: {
+    color: c.header,
   },
-  normal: {
-    fontSize: size.regular,
+  subtitleColor: {
+    color: c.subtitle,
   },
-};
+  buttonPrimary: {
+    ...material.buttonObject,
+    color: materialColors.blackPrimary,
+  },
+  uppercase: {
+    textTransform: 'uppercase',
+  },
+  capitalize: {
+    textTransform: 'capitalize',
+  },
+});
 
 export default {
-  size,
-  style,
+  ...material, ...fontColors, ...materialColors, ...systemWeights,
 };

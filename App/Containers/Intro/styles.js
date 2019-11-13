@@ -17,11 +17,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   title: {
-    fontSize: 22,
-    color: 'white',
     backgroundColor: 'transparent',
-    textAlign: 'center',
-    marginBottom: 16,
   },
 });
 

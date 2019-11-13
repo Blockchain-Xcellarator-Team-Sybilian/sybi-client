@@ -1,16 +1,17 @@
 import React from 'react';
 import resaga from 'resaga';
 import PropTypes from 'prop-types';
-import { Text } from 'galio-framework';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
+import { View, Text } from 'App/Components/UI';
 import { APP_SETUP_API, UPDATE_DONE_INTRO } from 'App/Apis';
 import NavigationService from 'App/Services/NavigationService';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import f from 'App/Theme/Fonts';
 import { CONFIG } from './config';
 import SLIDES from './slides';
 import styles from './styles';
 
-export class IntroScreen extends React.Component {
+export class Intro extends React.Component {
   handleDone = () => {
     this.props.resaga.dispatchTo(APP_SETUP_API, UPDATE_DONE_INTRO, {});
     NavigationService.navigate('MainScreen');
@@ -19,9 +20,9 @@ export class IntroScreen extends React.Component {
   renderItem = ({ item }) => {
     return (
       <View style={[styles.mainContent, { backgroundColor: item.backgroundColor }]}>
-        <Text p bold style={styles.title}>{item.title}</Text>
+        <Text style={[f.titleWhite, f.semibold]} uppercase>{item.title}</Text>
         <Image style={styles.image} source={item.image} />
-        <Text style={styles.text}>{item.text}</Text>
+        <Text style={[f.subheadingWhite, styles.text]}>{item.text}</Text>
       </View>
     );
   };
@@ -37,8 +38,8 @@ export class IntroScreen extends React.Component {
   }
 }
 
-IntroScreen.propTypes = {
+Intro.propTypes = {
   resaga: PropTypes.object.isRequired,
 };
 
-export default resaga(CONFIG)(IntroScreen);
+export default resaga(CONFIG)(Intro);

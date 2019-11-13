@@ -1,0 +1,15 @@
+import { StyleSheet } from 'App/Theme';
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    marginVertical: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dot: {
+    marginRight: 8,
+  }
+});
+
+export default styles;
