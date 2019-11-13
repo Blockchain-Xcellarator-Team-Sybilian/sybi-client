@@ -4,6 +4,7 @@ const componentWarnings = [
   'componentWillMount',
   'componentWillUpdate',
   'componentWillReceiveProps',
+  'ViewPagerAndroid',
 ];
 
 const formattedWarnings = componentWarnings.map(warning => `Warning: ${warning}`);

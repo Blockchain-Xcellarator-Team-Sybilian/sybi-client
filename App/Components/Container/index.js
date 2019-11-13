@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ImageBackground, View } from 'react-native';
+import { View, Image } from 'react-native';
 import { AnimatedView } from 'App/Components/Animated';
 import PropTypes from 'prop-types';
 import { Images } from 'App/Theme';
@@ -8,50 +8,55 @@ import styles from './style';
 export class Container extends PureComponent {
   render() {
     const {
-      animated, children, center, noBorder
+      animated, children, center, dense, small, noBorder, style
     } = this.props;
 
     const bgStyle = [(center) ? styles.center : {}, styles.background];
-    const childStyle = [(center) ? styles.center : {}, (!noBorder) ? styles.border : {}];
+    const childStyle = [(center) ? styles.center : {}, (!dense) ? styles.normal : {}, style];
 
-    let content = children;
-
-    if (!noBorder) {
-      content = (
-        <View style={childStyle}>
-          {children}
-        </View>
-      );
-    }
+    let content = (
+      <View style={childStyle}>
+        {children}
+      </View>
+    );
 
     if (animated) {
       content = (
         <AnimatedView animation="fadeIn" style={childStyle}>
-          {children}
+          {content}
         </AnimatedView>
       );
     }
 
+    if (noBorder) {
+      content = children;
+    }
+
     return (
-      <ImageBackground
-        resizeMode="cover"
-        source={Images.background}
-        style={bgStyle}
-      >
+      <View style={bgStyle}>
+        <Image
+          resizeMode="cover"
+          source={Images.background}
+          style={styles.imageBackground}
+        />
         {content}
-      </ImageBackground>
+      </View>
     );
   }
 }
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
+  style: PropTypes.object,
+  dense: PropTypes.bool,
   noBorder: PropTypes.bool,
   animated: PropTypes.bool,
   center: PropTypes.bool,
 };
 
 Container.defaultProps = {
+  style: {},
+  dense: false,
   center: false,
   animated: false,
   noBorder: false,

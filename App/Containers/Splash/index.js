@@ -4,9 +4,9 @@ import { Images } from 'App/Theme';
 import { Image } from 'react-native';
 import { AnimatedView } from 'App/Components/Animated';
 import Container from 'App/Components/Container';
-import styles from './SplashScreenStyle';
+import styles from './styles';
 
-export class SplashScreen extends React.Component {
+export class Splash extends React.Component {
   render() {
     const { animation, onAnimationEnd } = this.props;
 
@@ -24,14 +24,14 @@ export class SplashScreen extends React.Component {
   }
 }
 
-SplashScreen.propTypes = {
+Splash.propTypes = {
   animation: PropTypes.string,
   onAnimationEnd: PropTypes.func,
 };
 
-SplashScreen.defaultProps = {
+Splash.defaultProps = {
   animation: 'fadeInDown',
   onAnimationEnd: () => {},
 };
 
-export default SplashScreen;
+export default Splash;

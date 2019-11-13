@@ -5,12 +5,21 @@
  * That allows to change them more easily later on.
  */
 
-export default {
+export const COLORS = {
   transparent: 'rgba(0,0,0,0)',
   // Example colors:
-  text: '#212529',
-  primary: '#007bff',
+  text: '#4b4b4b',
+  label: '#8F9BB3',
+  disabled: '#aeaeae',
+  subtitle: '#5f5f5f',
+  header: '#4b4b4b',
+  primary: '#7755ff',
   success: '#28a745',
   error: '#dc3545',
   white: '#ffffff',
+  backdrop: '#a8a1d2',
+  whiteOpaque: 'rgba(255,255,255,0.7)',
+  headerBorder: 'rgba(224,224,224,0.7)',
 };
+
+export default COLORS;
