@@ -1,26 +1,60 @@
 import resaga from 'resaga';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { AnimatedImage } from 'App/Components/Animated';
 import ScrollContainer from 'App/Components/ScrollContainer';
-import { RKText } from 'App/Components/UI';
+import ActionButton from 'App/Components/ActionButton';
+import { RKText, View } from 'App/Components/UI';
 import Title from 'App/Components/Title';
+import { Images } from 'App/Theme';
 import PropTypes from 'prop-types';
 import { CONFIG } from './config';
 import styles from './styles';
 
-export class MoreScreen extends PureComponent {
+export class HomeScreen extends Component {
+  state = {
+    animation: 'fadeInRight',
+  };
+
+  componentWillUnmount = () => {
+    this.setState({ animation: '' });
+  };
+
   render() {
+    const { animation } = this.state;
+
     return (
       <ScrollContainer>
-        <Title title="More" />
+        <Title title="Other Options" />
+        <View style={{ alignItems: 'center' }}>
+          <AnimatedImage
+            duration={500}
+            animation={animation}
+            source={Images.othersBG}
+            style={{ width: 300, height: 300 }}
+          />
+        </View>
+        <Title title="Contact us thru" />
+        <ActionButton>
+          Educabot
+        </ActionButton>
+        <ActionButton>
+          Email
+        </ActionButton>
+        <ActionButton>
+          FAQs
+        </ActionButton>
+        <ActionButton>
+          T&C
+        </ActionButton>
       </ScrollContainer>
     );
   }
 }
 
-MoreScreen.propTypes = {
+HomeScreen.propTypes = {
   resaga: PropTypes.object.isRequired,
 };
 
-MoreScreen.defaultProps = {};
+HomeScreen.defaultProps = {};
 
-export default resaga(CONFIG)(MoreScreen);
+export default resaga(CONFIG)(HomeScreen);

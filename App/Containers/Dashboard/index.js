@@ -60,7 +60,7 @@ export class DashboardScreen extends Component {
 
   renderScene = () => BottomNavigation.SceneMap({
     home: this.renderScreen(HomeScreen),
-    others: this.renderScreen(HomeScreen),
+    others: this.renderScreen(MoreScreen),
     status: this.renderScreen(StatusScreen),
   });
 
