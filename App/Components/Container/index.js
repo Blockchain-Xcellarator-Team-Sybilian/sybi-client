@@ -11,8 +11,8 @@ export class Container extends PureComponent {
       animated, children, center, dense, small, noBorder, style
     } = this.props;
 
-    const bgStyle = [(center) ? styles.center : {}, styles.background];
-    const childStyle = [(center) ? styles.center : {}, (!dense) ? styles.normal : {}, style];
+    const bgStyle = [center && styles.center, styles.background];
+    const childStyle = [center && styles.center, dense ? styles.dense : styles.normal, style];
 
     let content = (
       <View style={childStyle}>

@@ -73,7 +73,7 @@ const StackNavigator = createStackNavigator(
     SplashScreen: hideHeader(Splash),
     LoginScreen: withHeader(Login, 'Login', true, 'ReminderScreen', 'Register an account'),
     RegisterNavigator: hideHeader(RegisterNavigator),
-    DashboardScreen: hideHeader(Dashboard),
+    DashboardScreen: withHeader(Dashboard),
   },
   {
     // By default the application will show the splash screen

@@ -12,8 +12,7 @@ export class Title extends PureComponent {
 
     return (
       <View style={styles.root}>
-        <MaterialIcon size={12} name="brightness-1" style={styles.dot} color={COLORS.primary} />
-        <RKText appearance="hint">{text}</RKText>
+        <RKText style={styles.title}>{text}</RKText>
       </View>
     );
   }

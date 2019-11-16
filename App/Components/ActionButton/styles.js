@@ -1,16 +1,14 @@
-import COLORS from 'App/Theme/Colors';
 import { StyleSheet } from 'App/Theme';
+import COLORS from '../../Theme/Colors';
 
 const styles = StyleSheet.create({
-  root: {},
-  message: {
-    color: COLORS.text,
-    textAlign: 'justify',
+  root: {
+    marginVertical: 4
   },
-  bridge: {
+  text: {
+    flex: 1,
+    fontWeight: 'bold',
     color: COLORS.text,
-    textAlign: 'justify',
-    marginTop: 8,
   },
   button: {
     borderWidth: 1,

@@ -1,5 +1,7 @@
 /* eslint-disable react/no-unused-state */
-import React, { PureComponent } from 'react';
+import resaga from 'resaga';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { BottomNavigation } from 'react-native-paper';
 import { LOGIC_HELPERS } from 'App/Utils/helpers/logic';
 import { Icon, RKText } from 'App/Components/UI';
@@ -7,24 +9,59 @@ import COLORS from 'App/Theme/Colors';
 import HomeScreen from './screens/Home';
 import MoreScreen from './screens/More';
 import StatusScreen from './screens/Status';
+import { CONFIG } from './config';
 import styles from './styles';
 
-export class DashboardScreen extends PureComponent {
+export class DashboardScreen extends Component {
   state = {
     index: 1,
     routes: [
       { key: 'status', title: 'status', icon: 'activity-outline' },
-      { key: 'home', title: 'home', icon: 'star-outline' },
-      { key: 'more', title: 'more', icon: 'more-horizontal-outline' },
+      { key: 'home', title: 'home', icon: 'home-outline' },
+      { key: 'others', title: 'others', icon: 'more-horizontal-outline' },
     ],
   };
 
-  handleIndexChange = index => this.setState({ index });
+  componentWillMount = () => {
+    const { navigation } = this.props;
+
+    navigation.setParams({
+      variant: 'dashboard',
+      title: 'Dashboard',
+    });
+  };
+
+  componentWillUnmount = () => {
+    const { navigation } = this.props;
+
+    navigation.setParams({
+      variant: '',
+      title: '',
+    });
+  };
+
+  renderScreen = Screen => (props) => {
+    const { navigation } = this.props;
+
+    return <Screen {...props} navigation={navigation} />;
+  };
+
+  handleIndexChange = (index) => {
+    const { navigation } = this.props;
+    const title = LOGIC_HELPERS.switchCase(index, {
+      0: 'Loan Status',
+      1: 'Home',
+      2: 'Others'
+    });
+
+    navigation.setParams({ title });
+    this.setState({ index });
+  };
 
   renderScene = () => BottomNavigation.SceneMap({
-    home: HomeScreen,
-    more: MoreScreen,
-    status: StatusScreen,
+    home: this.renderScreen(HomeScreen),
+    others: this.renderScreen(HomeScreen),
+    status: this.renderScreen(StatusScreen),
   });
 
   renderIcon = ({ route, focused }) => {
@@ -70,4 +107,8 @@ export class DashboardScreen extends PureComponent {
   }
 }
 
-export default DashboardScreen;
+DashboardScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
+export default resaga(CONFIG)(DashboardScreen);

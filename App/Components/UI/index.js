@@ -51,7 +51,7 @@ export {
 } from 'react-native';
 
 export {
-  Select, Icon, Datepicker, Toggle, Text as RKText
+  Select, Icon, Datepicker, Toggle, Text as RKText, Button as RKButton
 } from 'react-native-ui-kitten';
 
 export {

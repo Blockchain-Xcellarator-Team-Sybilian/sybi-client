@@ -37,7 +37,7 @@ export class AddGuarantor extends PureComponent {
     navigation.setParams({
       nextTitle: 'Skip',
       nextFunc: this.onNextStep,
-      title: 'Add a Guarantor?',
+      title: 'Add Guarantor',
       disableNext: false,
       backFunc: this.onPrevStep,
     });
@@ -134,7 +134,7 @@ export class AddGuarantor extends PureComponent {
     return (
       <ScrollView style={{ marginTop: 6 }}>
         <AnimatedView animation="fadeInUp" duration={500}>
-          <Title title="Guarantor Information" />
+          <Title title="Guarantor Details" />
           <ViewPadding>
             <Label label="NAME*" />
             <Input
@@ -172,15 +172,14 @@ export class AddGuarantor extends PureComponent {
         <AnimatedView animation="fadeIn" duration={700} style={styles.root}>
           <ViewPadding style={styles.backdrop}>
             <RKText category="c2" style={styles.guarantor}>
-              Adding a guarantor will increase your chance
-              of approval and getting loan faster
+              Adding a guarantor will increase your chance of approval.
             </RKText>
           </ViewPadding>
           <ViewPadding style={styles.toggle}>
             <Toggle
               checked={addGuarantor}
               onChange={this.onToggle}
-              text="Do you want to add a guarantor?"
+              text="Do you want to add a guarantor? (optional)"
             />
           </ViewPadding>
           {this.renderGuarantorInputs()}

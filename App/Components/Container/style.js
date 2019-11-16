@@ -1,16 +1,8 @@
 import { StyleSheet } from 'App/Theme';
-import { Dimensions } from 'react-native';
-
-const { width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   background: {
     flex: 1,
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
-    width: width < height ? width : height,
-    height: width < height ? height : width,
-    resizeMode: 'cover',
   },
   center: {
     alignItems: 'center',
@@ -29,6 +21,9 @@ export default StyleSheet.create({
     paddingTop: 80,
     paddingHorizontal: 24,
     marginVertical: 'auto',
+  },
+  dense: {
+    paddingTop: 60,
   },
   small: {
     paddingHorizontal: 60,

@@ -9,7 +9,7 @@ export class Terms extends PureComponent {
   render() {
     return (
       <ViewBackground>
-        <Tab indicatorStyle={{ borderBottomColor: COLORS.primary, borderBottomWidth: 2 }}>
+        <Tab style={{ marginTop: 50 }} indicatorStyle={{ borderBottomColor: COLORS.primary, borderBottomWidth: 2 }}>
           <TabItem
             label="Agreement"
             labelStyle={styles.labelStyle}
