@@ -54,7 +54,7 @@ export class StatusScreen extends Component {
           <AnimatedImage
             duration={500}
             animation={animation}
-            source={Images.ongoingLoan}
+            source={Images.othersBG}
             style={{ width: 300, height: 300 }}
           />
         </View>

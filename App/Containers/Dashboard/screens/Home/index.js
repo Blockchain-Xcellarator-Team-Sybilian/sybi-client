@@ -1,5 +1,6 @@
 import resaga from 'resaga';
 import React, { Component } from 'react';
+import NavigationService from 'App/Services/NavigationService';
 import { AnimatedImage } from 'App/Components/Animated';
 import ScrollContainer from 'App/Components/ScrollContainer';
 import ActionButton from 'App/Components/ActionButton';
@@ -19,6 +20,10 @@ export class HomeScreen extends Component {
     this.setState({ animation: '' });
   };
 
+  onLoanForm = () => {
+    NavigationService.navigate('LoanFormScreen');
+  };
+
   render() {
     const { animation } = this.state;
 
@@ -34,7 +39,7 @@ export class HomeScreen extends Component {
           />
         </View>
         <Title title="Get Started" />
-        <ActionButton>
+        <ActionButton onPress={this.onLoanForm}>
           Apply Loan
         </ActionButton>
         <ActionButton>

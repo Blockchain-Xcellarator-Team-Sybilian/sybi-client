@@ -22,6 +22,7 @@ import Terms from 'App/Containers/Register/screens/Terms';
 
 // Dashboard
 import Dashboard from 'App/Containers/Dashboard';
+import LoanForm from 'App/Containers/LoanForm';
 
 const withHeader = (screen, title, back, nextScreen, nextTitle, props) => ({
   screen,
@@ -74,6 +75,7 @@ const StackNavigator = createStackNavigator(
     LoginScreen: withHeader(Login, 'Login', true, 'ReminderScreen', 'Register an account'),
     RegisterNavigator: hideHeader(RegisterNavigator),
     DashboardScreen: withHeader(Dashboard),
+    LoanFormScreen: withHeader(LoanForm, 'Apply Loan', true),
   },
   {
     // By default the application will show the splash screen

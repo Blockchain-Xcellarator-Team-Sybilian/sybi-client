@@ -29,17 +29,18 @@ export class HomeScreen extends Component {
           <AnimatedImage
             duration={500}
             animation={animation}
-            source={Images.othersBG}
+            source={Images.ongoingLoan}
             style={{ width: 300, height: 300 }}
           />
         </View>
-        <Title title="Contact us thru" />
+        <Title title="Contact us" />
         <ActionButton>
           Educabot
         </ActionButton>
         <ActionButton>
           Email
         </ActionButton>
+        <Title title="Read More" />
         <ActionButton>
           FAQs
         </ActionButton>

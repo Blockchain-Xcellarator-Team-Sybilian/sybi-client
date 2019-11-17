@@ -7,11 +7,11 @@ import styles from './styles';
 
 export class ActionButton extends PureComponent {
   render() {
-    const { children } = this.props;
+    const { children, onPress } = this.props;
 
     return (
       <View style={styles.root}>
-        <Button style={styles.button}>
+        <Button style={styles.button} onPress={onPress}>
           <RKText category="s2" style={styles.text}>
             {children}
           </RKText>
@@ -24,8 +24,11 @@ export class ActionButton extends PureComponent {
 
 ActionButton.propTypes = {
   children: PropTypes.any.isRequired,
+  onPress: PropTypes.func,
 };
 
-ActionButton.defaultProps = {};
+ActionButton.defaultProps = {
+  onPress: () => {},
+};
 
 export default ActionButton;

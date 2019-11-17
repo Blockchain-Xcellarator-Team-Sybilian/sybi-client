@@ -26,6 +26,10 @@ export class Header extends Component {
     }
   };
 
+  onLogout = () => {
+    NavigationService.navigateAndReset('MainScreen');
+  };
+
   renderGoToButton = () => {
     const {
       nextScreen, nextTitle, nextFunc, disableNext
@@ -106,6 +110,7 @@ export class Header extends Component {
           marginRight: 8,
           borderRadius: 12,
         }}
+        onPress={this.onLogout}
       />
     );
   };
@@ -138,10 +143,13 @@ export class Header extends Component {
     );
   };
 
+  renderHidden = () => null;
+
   render() {
     const { variant } = this.props;
 
     return LOGIC_HELPERS.switchCase(variant, {
+      hidden: this.renderHidden,
       dashboard: this.renderDashboard,
       default: this.renderDefault,
     });
