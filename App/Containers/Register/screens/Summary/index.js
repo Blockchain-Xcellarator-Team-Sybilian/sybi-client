@@ -15,6 +15,7 @@ import {
 import PropTypes from 'prop-types';
 import { CONFIG } from './config';
 import styles from './styles';
+import { LOGIN, USER_API } from '../../../../Apis';
 
 export class Summary extends PureComponent {
   componentDidMount = () => {
@@ -23,15 +24,32 @@ export class Summary extends PureComponent {
     navigation.setParams({
       nextTitle: 'Finish',
       nextFunc: this.onNextStep,
-      title: 'Please verify',
+      title: 'Summary',
       disableNext: false,
       backFunc: this.onPrevStep,
     });
   };
 
   onSubmit = () => {
-    // const {} = this.props;
-    // this.props.resaga.dispatchTo();
+    const {
+      name,
+      phone,
+      email,
+      school,
+      dateOfBirth,
+      studentNumber,
+    } = this.props;
+
+    const payload = {
+      name,
+      phone,
+      email,
+      dateOfBirth,
+      studentNumber,
+      school: school.text,
+    };
+
+    this.props.resaga.dispatchTo(USER_API, LOGIN, { payload });
     NavigationService.navigateAndResetStack('DashboardScreen');
   };
 
@@ -179,8 +197,8 @@ export class Summary extends PureComponent {
           <AnimatedView animation="fadeInUp" duration={700}>
             <ViewPadding style={styles.backdrop}>
               <RKText category="c2" style={styles.message}>
-                {'Please verify all the details below then press "Finish" button to proceed. '
-                  + 'Press the circle steppers to go back to specified step.'}
+                {'Please verify the details below then press "Finish" to proceed. '
+                  + 'Use the steppers to go back to a specified step.'}
               </RKText>
             </ViewPadding>
             {this.renderStudentInfo()}

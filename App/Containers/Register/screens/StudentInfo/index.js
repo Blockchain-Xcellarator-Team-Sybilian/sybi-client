@@ -21,9 +21,11 @@ const CalendarIcon = style => <Icon {...style} name="calendar" />;
 
 export class StudentInfo extends PureComponent {
   data = [
-    { text: 'Option 1' },
-    { text: 'Option 2' },
-    { text: 'Option 3' },
+    { text: 'Ateneo De Manila' },
+    { text: 'De La Salle University' },
+    { text: 'Far Eastern University' },
+    { text: 'Mapua Institute of Technology' },
+    { text: 'Pamantasan ng Lungsod ng Maynila' },
   ];
 
   state = {
@@ -42,7 +44,7 @@ export class StudentInfo extends PureComponent {
     navigation.setParams({
       nextTitle: 'Next',
       nextFunc: this.onNextStep,
-      title: 'Welcome Student!',
+      title: 'Registration',
       backFunc: this.onPrevStep,
     });
 

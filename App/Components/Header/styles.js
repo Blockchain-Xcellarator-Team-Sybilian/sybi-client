@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 16,
-    backgroundColor: COLORS.whiteOpaque,
+    backgroundColor: COLORS.white,
     marginTop: Platform.OS === 'ios' ? 20 : 0, // only for IOS to give StatusBar Space
   },
   borderRoot: {

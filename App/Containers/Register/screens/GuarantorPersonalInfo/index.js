@@ -21,7 +21,12 @@ import styles from './styles';
 const CalendarIcon = style => <Icon {...style} name="calendar" />;
 
 export class GuarantorPersonalInfo extends PureComponent {
-  data = [{ text: 'Option 1' }, { text: 'Option 2' }, { text: 'Option 3' }];
+  data = [
+    { text: 'Employed' },
+    { text: 'Self-Employed/Business' },
+    { text: 'Dependent' },
+    { text: 'Others' },
+  ];
 
   state = {
     dateOfBirth: '',
@@ -46,7 +51,7 @@ export class GuarantorPersonalInfo extends PureComponent {
     navigation.setParams({
       nextTitle: 'Next',
       nextFunc: this.onNextStep,
-      title: 'Almost done...',
+      title: 'Add Guarantor',
       disableNext: true,
       backFunc: this.onPrevStep,
     });
@@ -156,7 +161,7 @@ export class GuarantorPersonalInfo extends PureComponent {
       <ViewInputContainer>
         <ScrollView style={{ marginTop: 6 }}>
           <AnimatedView animation="fadeInUp" duration={700}>
-            <Title title="Guarantor information" />
+            <Title title="Guarantor Details" />
             <ViewPadding>
               <Label label="DATE OF BIRTH*" />
               <Datepicker

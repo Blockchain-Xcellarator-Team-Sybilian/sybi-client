@@ -1,14 +1,19 @@
-import React, { PureComponent } from 'react';
+import resaga from 'resaga';
 import PropTypes from 'prop-types';
-import { View, Text, Button } from 'App/Components/UI';
+import React, { Component } from 'react';
+import {
+  View, RKText, Text, Button, Icon, RKButton
+} from 'App/Components/UI';
+import UserAvatar from 'react-native-user-avatar';
 import NavigationService from 'App/Services/NavigationService';
 import BackIcon from 'App/Assets/Images/arrow-backward.png';
 import { LOGIC_HELPERS } from 'App/Utils/helpers/logic';
 import COLORS from 'App/Theme/Colors';
 import f from 'App/Theme/Fonts';
+import { CONFIG } from './config';
 import styles from './styles';
 
-export class Header extends PureComponent {
+export class Header extends Component {
   handleGoTo = () => {
     const { nextScreen, reset, nextFunc } = this.props;
 
@@ -38,9 +43,7 @@ export class Header extends PureComponent {
         onPress={this.handleGoTo}
         backgroundColor={COLORS.primary}
       >
-        <Text style={[f.buttonWhite, f.bold, f.uppercase]}>
-          {nextTitle}
-        </Text>
+        <Text style={[f.buttonWhite, f.bold, f.uppercase]}>{nextTitle}</Text>
       </Button>
     );
   };
@@ -64,7 +67,50 @@ export class Header extends PureComponent {
     );
   };
 
-  render() {
+  renderAvatar = () => {
+    const { email } = this.props;
+
+    return (
+      <View>
+        <UserAvatar size="40" color={COLORS.primary} name={email.toUpperCase()} />
+      </View>
+    );
+  };
+
+  renderTitle = () => {
+    const { title, name } = this.props;
+
+    return (
+      <View style={{ flex: 1, marginHorizontal: 16 }}>
+        <RKText category="label" style={{ color: COLORS.disabled }}>
+          {name}
+        </RKText>
+        <RKText category="h6" style={{ color: COLORS.text, lineHeight: 22 }}>
+          {title}
+        </RKText>
+      </View>
+    );
+  };
+
+  renderLogoutIcon = style => <Icon {...style} width={16} height={16} name="log-out-outline" />;
+
+  renderLogout = () => {
+    return (
+      <RKButton
+        size="tiny"
+        appearance="outline"
+        icon={this.renderLogoutIcon}
+        style={{
+          width: 24,
+          height: 24,
+          marginRight: 8,
+          borderRadius: 12,
+        }}
+      />
+    );
+  };
+
+  renderDefault = () => {
     const { title, noBorder } = this.props;
     const rootStyle = LOGIC_HELPERS.ifElse(noBorder, styles.root, [styles.root, styles.borderRoot]);
 
@@ -77,12 +123,35 @@ export class Header extends PureComponent {
         <View>{this.renderGoToButton()}</View>
       </View>
     );
+  };
+
+  renderDashboard = () => {
+    const { title, noBorder } = this.props;
+    const rootStyle = LOGIC_HELPERS.ifElse(noBorder, styles.root, [styles.root, styles.borderRoot]);
+
+    return (
+      <View style={rootStyle}>
+        {this.renderAvatar()}
+        {this.renderTitle()}
+        {this.renderLogout()}
+      </View>
+    );
+  };
+
+  render() {
+    const { variant } = this.props;
+
+    return LOGIC_HELPERS.switchCase(variant, {
+      dashboard: this.renderDashboard,
+      default: this.renderDefault,
+    });
   }
 }
 
 Header.propTypes = {
   back: PropTypes.bool,
   title: PropTypes.string,
+  variant: PropTypes.string,
   nextScreen: PropTypes.string,
   nextTitle: PropTypes.string,
   nextFunc: PropTypes.func,
@@ -90,6 +159,10 @@ Header.propTypes = {
   noBorder: PropTypes.bool,
   reset: PropTypes.bool,
   disableNext: PropTypes.bool,
+
+  // dashboard
+  name: PropTypes.string,
+  email: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -100,6 +173,9 @@ Header.defaultProps = {
   noBorder: false,
   reset: false,
   disableNext: false,
+  variant: 'default',
+  name: '',
+  email: 'test',
 };
 
-export default Header;
+export default resaga(CONFIG)(Header);

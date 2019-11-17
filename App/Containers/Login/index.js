@@ -18,6 +18,7 @@ import Container from '../../Components/Container';
 import COLORS from '../../Theme/Colors';
 import { LOGIC_HELPERS } from '../../Utils/helpers/logic';
 import NavigationService from '../../Services/NavigationService';
+import { LOGIN, USER_API } from '../../Apis';
 
 export class Login extends PureComponent {
   state = {
@@ -37,6 +38,10 @@ export class Login extends PureComponent {
   };
 
   onLogin = () => {
+    const { username, password } = this.state;
+
+    const payload = { username, password };
+    this.props.resaga.dispatchTo(USER_API, LOGIN, { payload });
     NavigationService.navigateAndReset('DashboardScreen');
   };
 

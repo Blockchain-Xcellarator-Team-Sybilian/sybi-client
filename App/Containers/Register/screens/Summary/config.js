@@ -4,6 +4,8 @@ export const CONFIG = {
   value: {
     // STUDENT INFO
     name: [REGISTER_DATA_STORE, 'name'],
+    username: [REGISTER_DATA_STORE, 'username'],
+    password: [REGISTER_DATA_STORE, 'password'],
     email: [REGISTER_DATA_STORE, 'email'],
     phone: [REGISTER_DATA_STORE, 'phone'],
     school: [REGISTER_DATA_STORE, 'school'],

@@ -17,7 +17,12 @@ import { CONFIG } from './config';
 import styles from './styles';
 
 export class PersonalInfo extends PureComponent {
-  data = [{ text: 'Option 1' }, { text: 'Option 2' }, { text: 'Option 3' }];
+  data = [
+    { text: 'Employed' },
+    { text: 'Self-Employed/Business' },
+    { text: 'Dependent' },
+    { text: 'Others' },
+  ];
 
   state = {
     error: '',
@@ -43,7 +48,7 @@ export class PersonalInfo extends PureComponent {
     navigation.setParams({
       nextTitle: 'Next',
       nextFunc: this.onNextStep,
-      title: 'Tell me more',
+      title: 'Registration',
       backFunc: this.onPrevStep,
     });
 

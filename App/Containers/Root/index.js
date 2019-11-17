@@ -15,7 +15,7 @@ import { CONFIG } from './config';
 
 class Root extends Component {
   // componentDidMount = () => {
-  //   NavigationService.navigate('LoginScreen');
+  //   NavigationService.navigate('DashboardScreen');
   //   BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   // };
 
