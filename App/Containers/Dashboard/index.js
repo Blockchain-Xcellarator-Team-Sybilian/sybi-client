@@ -49,7 +49,7 @@ export class DashboardScreen extends Component {
   handleIndexChange = (index) => {
     const { navigation } = this.props;
     const title = LOGIC_HELPERS.switchCase(index, {
-      0: 'Loan Status',
+      0: 'Status',
       1: 'Home',
       2: 'Others'
     });

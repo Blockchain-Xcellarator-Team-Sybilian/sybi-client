@@ -10,5 +10,6 @@ export default {
   ongoingLoan: require('App/Assets/Images/on-going.png'),
   backIcon: require('App/Assets/Images/arrow-backward.png'),
   forwardIcon: require('App/Assets/Images/arrow-forward.png'),
+  imgPlaceholder: require('App/Assets/Images/img-placeholder.png'),
   othersBG: require('App/Assets/Images/others.png'),
 };
